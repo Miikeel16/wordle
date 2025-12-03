@@ -1,0 +1,29 @@
+h1{
+    text-align: center;
+}
+table {
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+
+table th {
+    padding: 0;
+}
+
+table th input {
+    width: 60px;
+    aspect-ratio: 1 / 1;
+    font-size: 24px;
+    text-align: center;
+    box-sizing: border-box;
+}
+button{
+    height: 3em;
+    width: 3em;
+    font-size: 15px;
+}
+table tr {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
