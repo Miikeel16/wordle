@@ -12,7 +12,7 @@ for (let i = 1; i <= 5; i++) {
 
         inputs[i].addEventListener('input', function () {
 
-            this.value = this.value.replace(/[^A-Za-z]/g, '').toUpperCase();
+            this.value = this.value.replace(/[^A-Za-zñÑ]/g, '').toUpperCase();
 
             if (this.value !== '' && i < inputs.length - 1) {
                 inputs[i + 1].focus();
@@ -42,20 +42,65 @@ fetch("https://random-word-api.herokuapp.com/word?number=1&length=5&lang=es")
     palabraAleatoria = data[0].toUpperCase();
   })
   .catch(err => console.error("Error al obtener palabra:", err));
+
 //LLAMAR A LA API DE LA RAE
 
-async function comprobarPalabraRAE(palabra) {
-    try {
-        const res = await fetch(`https://rae-api.com/api/words/${palabra}`);
-        if (!res.ok) {
-            return false;
+
+// ---------------------------
+//  Metodo de CHATGPT
+//  Generar variantes con tildes (POR QUE NO ME ACEPTABA PALABRAS CON TILDES Y NO SABIA HACERLO)
+// ---------------------------
+function generarVariantesConTildes(palabra) {
+    const map = {
+        A: ["A", "Á"],
+        E: ["E", "É"],
+        I: ["I", "Í"],
+        O: ["O", "Ó"],
+        U: ["U", "Ú"]
+    };
+
+    let variantes = [""];
+
+    for (let letra of palabra) {
+        letra = letra.toUpperCase();
+
+        if (map[letra]) {
+            let nuevas = [];
+            for (let base of variantes) {
+                for (let alt of map[letra]) {
+                    nuevas.push(base + alt);
+                }
+            }
+            variantes = nuevas;
+        } else {
+            variantes = variantes.map(v => v + letra);
         }
-        const data = await res.json();
-        return data && data.word ? true : false;
-    } catch (err) {
-        return false;
     }
+
+    return variantes;
 }
+
+async function comprobarPalabraRAE(palabra) {
+
+    const variantes = generarVariantesConTildes(palabra);
+
+    for (const variante of variantes) {
+        try {
+            const res = await fetch(`http://localhost:3000/comprobar/${variante}`);
+            const data = await res.json();
+            console.log("Probando:", variante, "Resultado:", data.ok);
+
+            if (data.ok === true) {
+                return true;
+            }
+        } catch (e) {
+            console.log("Error probando variante", variante);
+        }
+    }
+
+    return false;
+}
+
 //FUNCIONES 
 
 function filaCompleta(inputs){
@@ -73,28 +118,30 @@ function unirPalabra(inputs){
     validarPalabra(palabra, inputs);
 }
 
-function validarPalabra(palabra, inputs){
-    if(comprobarPalabraRAE(palabra)){
+async function validarPalabra(palabra, inputs) {
+    const esValida = await comprobarPalabraRAE(palabra);
+
+    if (esValida) {
         colorFila(inputs, palabraAleatoria);
 
-        if(palabraAleatoria==palabra){
-            alert("Has acertado la palabra era: "+palabraAleatoria);
+        if (palabraAleatoria == palabra) {
+            alert("Has acertado la palabra era: " + palabraAleatoria);
             location.reload();
             limpiarFilas();
             filaActual = 1;
-        }else{
+        } else {
             bloquearFila(inputs);
             filaActual++;
-            if(filaActual <= 5){
+            if (filaActual <= 5) {
                 focusFila(filaActual);
-            }else{
-                alert("Has perdido la palabra era: "+palabraAleatoria);
+            } else {
+                alert("Has perdido la palabra era: " + palabraAleatoria);
                 location.reload();
                 limpiarFilas();
                 filaActual = 1;
             }
         }
-    }else{
+    } else {
         alert("Palabra no valida");
     }
 }
@@ -141,5 +188,30 @@ function focusFila(numFila){
         }
     }
 }
+function teclasBotones() {
+    const teclado = document.querySelector('.teclas');
+    teclado.addEventListener('click', function(e) {
+        if(e.target.tagName === 'BUTTON') {
+            const letra = e.target.textContent.toUpperCase();
+            const inputs = filasInputs[filaActual];
+            for(let i = 0; i < inputs.length; i++) {
+                if(inputs[i].value === "") {
+                    inputs[i].value = letra;
+                    if(i < inputs.length - 1) {
+                        inputs[i+1].focus();
+                    } else {
+                        inputs[i].focus();
+                    }
+                    break;
+                }
+            }
+        }
+    });
+}
 
-//
+teclasBotones()
+
+//SI RECARGO LA PAGINA SE BORRAN LOS INPUT:
+window.addEventListener('load', () => {
+    limpiarFilas();
+});
