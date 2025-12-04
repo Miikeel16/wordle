@@ -1,6 +1,8 @@
-PASOS PARA INICIAR EL WORDLE:
-<br><br>
-1.- ABRIR TERMINAL Y HACER CD A LA CARPETA WORDLE-BACKEND <br>
-2.- DESDE LA CARPETA WORLDE-BACKEND PONER COMANDO node server.js<br>
-3.- EJECUTAR EL WORDLE DESDE EL INDEX.HTML<br>
-4.- DISFRUTAR DEL JUEGO :)<br>
+# PASOS PARA INICIAR EL WORDLE
+
+1. Abrir terminal en vscode y hacer `cd` a la carpeta `wordle-backend`.
+2. Desde la carpeta `wordle-backend`, ejecutar el siguiente comando:
+```bash
+node server.js
+3. Ejecutar el proyecto abriendolo desde `index.html`
+4. Disfrutar el juego :)
