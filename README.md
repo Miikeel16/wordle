@@ -24,7 +24,7 @@ node server.js
 | CARNE   | 🟩🟩🟩🟩🟩 |
 
 [Repo de github](https://github.com/Miikeel16/wordle)  
-![imagen wordle]([https://github.com/Miikeel16/wordle](https://www.internetmatters.org/wp-content/uploads/2022/02/wordle-logo.webp))
+![imagen wordle](https://www.internetmatters.org/wp-content/uploads/2022/02/wordle-logo.webp)
 
 
 
