@@ -12,4 +12,21 @@ node server.js
 3. Ejecutar el proyecto abriendolo desde `index.html`
 4. Disfrutar el juego :)
 
+## Ejemplo de Wordle
+
+| Palabra | Resultado |
+|---------|---------------|
+| CASAS   | 🟨⬛⬛⬛⬛ |
+| CARTA   | 🟨🟨⬛⬛⬛ |
+| CARRO   | 🟩🟩⬛⬛⬛ |
+| CARGO   | 🟩🟩🟩⬛⬛ |
+| CARDO   | 🟩🟩🟩🟨⬛ |
+| CARNE   | 🟩🟩🟩🟩🟩 |
+
+[Repo de github](https://github.com/Miikeel16/wordle)
+![imagen wordle]([https://github.com/Miikeel16/wordle](https://www.internetmatters.org/wp-content/uploads/2022/02/wordle-logo.webp))
+
+
+
+
 
