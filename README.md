@@ -1,5 +1,5 @@
 # WORDLE
-Aplicacion del wordle creada por 
+Aplicacion del wordle creada por:
 ##### Mikel Garcia #####
 
 # Pasos para ejecutar el programa
