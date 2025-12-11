@@ -7,3 +7,5 @@ node server.js
 ```
 3. Ejecutar el proyecto abriendolo desde `index.html`
 4. Disfrutar el juego :)
+
+#####Mikel Garcia
