@@ -1,7 +1,7 @@
 # WORDLE
 Aplicacion del wordle creada por:
 ##### Mikel Garcia #####
-
+---
 # Pasos para ejecutar el programa
 
 1. Abrir terminal en vscode y hacer `cd` a la carpeta `wordle-backend`.
@@ -11,7 +11,7 @@ node server.js
 ```
 3. Ejecutar el proyecto abriendolo desde `index.html`
 4. Disfrutar el juego :)
-
+---
 ## Ejemplo de Wordle
 
 | Palabra | Resultado |
