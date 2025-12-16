@@ -40,9 +40,9 @@ fetch("https://random-word-api.herokuapp.com/word?number=1&length=5&lang=es")
   .then(res => res.json())
   .then(data => {
     palabraAleatoria = data[0].toUpperCase();
+    console.log(palabraAleatoria)
   })
   .catch(err => console.error("Error al obtener palabra:", err));
-
 //LLAMAR A LA API DE LA RAE
 
 
