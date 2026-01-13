@@ -9,7 +9,7 @@ Aplicacion del wordle creada por:
 ```bash
 node server.js
 ```
-3. Ejecutar el proyecto abriendolo desde `index.html`
+3. Ejecutar el proyecto abriendolo desde `index.html` con live server.
 4. Disfrutar el juego :)
 ---
 ## Ejemplo de Wordle
